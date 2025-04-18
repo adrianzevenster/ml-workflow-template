@@ -6,3 +6,11 @@ stages:
     - scripts/extract_text.py
     outs:
     - data/extracted/text
+  extract_entities:
+    cmd: python scripts/extract_entities.py data/extracted/text data/extracted/json_ner
+      --model_name dslim/bert-base-NER
+    deps:
+    - data/extracted/text
+    - scripts/extract_entities.py
+    outs:
+    - data/extracted/json_ner

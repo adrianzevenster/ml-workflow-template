@@ -1,0 +1,39 @@
+schema: '2.0'
+stages:
+  extract_text:
+    cmd: python scripts/extract_text.py data/raw/pdfs data/extracted/text
+    deps:
+    - path: data/raw/pdfs
+      hash: md5
+      md5: e5e2452fcd1c3c001c3139ede18d914f.dir
+      size: 1130728
+      nfiles: 3
+    - path: scripts/extract_text.py
+      hash: md5
+      md5: 1febfe6d25ace9b66cdaa55778213f97
+      size: 1239
+    outs:
+    - path: data/extracted/text
+      hash: md5
+      md5: 0105dd1d970772f6dee3f8740f379625.dir
+      size: 97382
+      nfiles: 3
+  extract_entities:
+    cmd: python scripts/extract_entities.py data/extracted/text data/extracted/json_ner
+      --model_name dslim/bert-base-NER
+    deps:
+    - path: data/extracted/text
+      hash: md5
+      md5: 0105dd1d970772f6dee3f8740f379625.dir
+      size: 97382
+      nfiles: 3
+    - path: scripts/extract_entities.py
+      hash: md5
+      md5: 1c8137719b9f92ec59ebb88b8e13e953
+      size: 1816
+    outs:
+    - path: data/extracted/json_ner
+      hash: md5
+      md5: 03b05639dd2cad02de6a7b0f2dd7dab8.dir
+      size: 101927
+      nfiles: 3
