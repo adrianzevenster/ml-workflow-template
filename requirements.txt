@@ -39,6 +39,7 @@ dvc-task==0.40.2
 entrypoints==0.4
 filelock==3.18.0
 fire==0.7.0
+flake8==7.2.0
 flatbuffers==25.2.10
 flatten-dict==0.4.2
 flufl.lock==8.1.0
@@ -63,6 +64,7 @@ libclang==18.1.1
 Markdown==3.8
 markdown-it-py==3.0.0
 MarkupSafe==3.0.2
+mccabe==0.7.0
 mdurl==0.1.2
 ml_dtypes==0.5.1
 multidict==6.4.3
@@ -82,11 +84,13 @@ prompt_toolkit==3.0.51
 propcache==0.3.1
 protobuf==5.29.4
 psutil==7.0.0
+pycodestyle==2.13.0
 pycparser==2.22
 pycryptodome==3.22.0
 pydantic==2.11.3
 pydantic_core==2.33.1
 pydot==3.0.4
+pyflakes==3.3.2
 pygit2==1.17.0
 Pygments==2.19.1
 pygtrie==2.5.0
