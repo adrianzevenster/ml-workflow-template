@@ -1,1 +1,4 @@
 data/raw/pdfs/
+.venv/
+.venv1/
+.venv-py310/
