@@ -1,0 +1,8 @@
+stages:
+  extract_text:
+    cmd: python scripts/extract_text.py data/raw/pdfs data/extracted/text
+    deps:
+    - data/raw/pdfs
+    - scripts/extract_text.py
+    outs:
+    - data/extracted/text
