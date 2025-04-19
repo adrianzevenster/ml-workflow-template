@@ -14,3 +14,10 @@ stages:
     - scripts/extract_entities.py
     outs:
     - data/extracted/json_ner
+  extract_people:
+    cmd: python scripts/extract_people.py data/extracted/json_ner data/extracted/people/people.csv
+    deps:
+    - data/extracted/json_ner
+    - scripts/extract_people.py
+    outs:
+    - data/extracted/people/people.csv
