@@ -1,5 +1,6 @@
 import subprocess
 
+
 def test_flake8_clean():
     """Fail if any errors found"""
     res = subprocess.run(
