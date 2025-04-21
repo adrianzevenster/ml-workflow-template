@@ -1,0 +1,16 @@
+stages:
+  run_pipeline:
+    cmd: python main.py --record-id ${record_id} --work-dir ${work_dir}
+    deps:
+      - main.py
+      - config.py
+      - scripts/db_fetch.py
+      - scripts/pdf_sanitize.py
+      - scripts/gcs_upload.py
+      - scripts/docai_process.py
+      - scripts/gemini_process.py
+    params:
+      - record_id
+      - work_dir
+    outs:
+      - ${work_dir}/${record_id}_results.json

@@ -1,0 +1,16 @@
+# Google Cloud clients
+google-cloud-storage>=2.0.0
+google-cloud-documentai>=2.10.0
+google-cloud-aiplatform>=1.27.0
+
+# Database driver
+mysql-connector-python>=8.0.0
+
+# PDF utilities
+PyPDF2>=3.0.0
+
+# CLI framework
+click>=8.0.0
+
+# (Optional) for local .env support
+python-dotenv>=0.20.0

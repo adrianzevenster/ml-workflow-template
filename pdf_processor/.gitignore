@@ -1,0 +1,11 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# DVC cache & workspace
+.dvc/
+.work/
+
+# Local experiment outputs
+work/
