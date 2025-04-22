@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+  pdf-processor:
+    build: .
+    container_name: pdf_processor
+    # Use an env file for sensitive/config parameters
+    env_file:
+      - .env
+    environment:
+      # Database connection
+      DB_HOST: ${DB_HOST}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+      DB_NAME: ${DB_NAME}
+      # GCP and storage
+      GCS_BUCKET: ${GCS_BUCKET}
+      GCP_PROJECT: ${project_id}
+      GCP_LOCATION: ${location}
+      # Document AI and Vertex settings
+      DOCAI_PROCESSOR_ID: ${docai_processor_id}
+      ENDPOINT_ID: ${endpoint_id}
+      LOGS_DATASET: ${logs_dataset}
+      DOC_AI_SINK_NAME: ${docai_log_sink_name}
+      VERTEX_SINK_NAME: ${vertex_log_sink_name}
+      MONITORING_JOB_NAME: ${monitoring_job_name}
+      LOGGING_SAMPLING_PERCENTAGE: ${logging_sampling_percentage}
+      DRIFT_THRESHOLD: ${drift_threshold}
+      MONITOR_INTERVAL_HOURS: ${monitor_interval_hours}
+      # Pipeline parameters
+      RECORD_ID: ${record_id}
+      WORK_DIR: ${work_dir}
+    volumes:
+      - .:/app
+    working_dir: /app
+    # By default run the entrypoint which executes the DVC pipeline
+    entrypoint: ["/app/entrypoint.sh"]
+    # Override command if you need to run custom commands
+    command: []
