@@ -13,4 +13,43 @@ stages:
       - record_id
       - work_dir
     outs:
+      - ${work_dir}/docai_raw.json
+      - ${work_dir}/gemini_raw.json
       - ${work_dir}/${record_id}_results.json
+
+  post_process:
+    cmd: python scripts/result_processor.py \
+      ${work_dir}/docai_raw.json \
+      ${work_dir}/gemini_raw.json \
+      ${work_dir}/analysis.json
+    deps:
+      - scripts/result_processor.py
+      - ${work_dir}/docai_raw.json
+      - ${work_dir}/gemini_raw.json
+      - params.yaml
+    params:
+      - required_fields
+    outs:
+      - ${work_dir}/analysis.json
+  data_quality:
+    cmd: |
+      python scripts/quality_checks.py \
+        ${work_dir}/docai_raw.json \
+        ${work_dir}/gemini_raw.json \
+        ${work_dir}/analysis.json \
+        ${work_dir}/metrics.json \
+        --min-text-length ${min_text_length} \
+        --min-entities ${min_entities}
+    deps:
+      - scripts/quality_checks.py
+      - ${work_dir}/docai_raw.json
+      - ${work_dir}/gemini_raw.json
+      - ${work_dir}/analysis.json
+      - params.yaml
+    params:
+      - min_text_length
+      - min_entities
+    outs:
+      - ${work_dir}/metrics.json
+    metrics:
+      - ${work_dir}/metrics.json

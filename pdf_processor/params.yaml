@@ -1,3 +1,12 @@
-# parameters for DVC experiments
 record_id: 123
 work_dir: work/${record_id}
+
+# from before…
+required_fields:
+  - NAME
+  - DATE
+  - ID_NUMBER
+
+# for quality checks
+min_text_length: 100
+min_entities: 1
