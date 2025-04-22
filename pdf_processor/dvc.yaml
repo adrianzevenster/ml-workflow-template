@@ -45,11 +45,12 @@ stages:
       - ${work_dir}/${record_id}_results.json
 
   post_process:
-    cmd: python scripts/result_processor.py \
-      ${work_dir}/docai_raw.json \
-      ${work_dir}/gemini_raw.json \
-      ${work_dir}/analysis.json \
-      --required-fields ${required_fields}
+    cmd: >
+      python scripts/result_processor.py \
+        ${work_dir}/docai_raw.json \
+        ${work_dir}/gemini_raw.json \
+        ${work_dir}/analysis.json \
+        --required-fields ${required_fields}
     deps:
       - scripts/result_processor.py
       - ${work_dir}/docai_raw.json
@@ -81,3 +82,19 @@ stages:
       - ${work_dir}/metrics.json
     metrics:
       - ${work_dir}/metrics.json
+  lint:
+    cmd: flake8 .
+    deps:
+      - .flake8
+      - requirements.txt
+      - main.py
+      - config.py
+      - scripts/db_fetch.py
+      - scripts/pdf_sanitize.py
+      - scripts/gcs_upload.py
+      - scripts/docai_process.py
+      - scripts/gemini_process.py
+      - scripts/results_processor.py
+      - scripts/quality_checks.py
+      - scripts/setup_gcp_logging.sh
+    outs: []

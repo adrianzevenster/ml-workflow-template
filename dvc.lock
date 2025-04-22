@@ -10,8 +10,8 @@ stages:
       nfiles: 3
     - path: scripts/extract_text.py
       hash: md5
-      md5: 1febfe6d25ace9b66cdaa55778213f97
-      size: 1239
+      md5: 6a539a13b89e40e116b4913dd20047f3
+      size: 1238
     outs:
     - path: data/extracted/text
       hash: md5
